@@ -50,12 +50,12 @@ class AuthController extends Controller
       $http = new \GuzzleHttp\Client();
 
       try{
-      $response = $http->post(config('services.passport.login_endpoint'), [
+      $response = $http->post('https://onmyway69.herokuapp.com/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
-            'client_id' => config('services.passport.client_id'),
-            'client_secret' => config('services.passport.client_secret'),
-            'username' => $request->email,
+            'client_id' => 2,
+            'client_secret' => 'RT9Mim3zlvZ4T1MWimUVq3nNOu2Zp6aR1baGOkVJ',
+            'username' => $request->username,
             'password' => $request->password,
         ]
       ]);
