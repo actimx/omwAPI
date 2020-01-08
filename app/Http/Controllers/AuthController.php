@@ -13,8 +13,8 @@ class AuthController extends Controller
       $response = $http->post(config('services.passport.login_endpoint'), [
         'form_params' => [
             'grant_type' => 'password',
-            'client_id' => config('services.passport.client_id'),
-            'client_secret' => config('services.passport.client_secret'),
+            'client_id' => 2,
+            'client_secret' => 'RT9Mim3zlvZ4T1MWimUVq3nNOu2Zp6aR1baGOkVJ',
             'username' => $request->username,
             'password' => $request->password,
         ]
@@ -27,7 +27,7 @@ class AuthController extends Controller
         return response()->json('Your credentials are incorrect. Please try again.', $e->getCode());
       }
 
-      return response()->json('Something went wrong on the server.', $e->getCode());
+      return response()->json('Something went wrong on the server!', $e->getCode());
     }
   }
 
