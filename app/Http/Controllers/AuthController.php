@@ -27,7 +27,7 @@ class AuthController extends Controller
         return response()->json('Your credentials are incorrect. Please try again.', $e->getCode());
       }
 
-      return response()->json(compact('e'));
+      return response()->json($exception->getResponse()->getBody(true));
     }
   }
 
