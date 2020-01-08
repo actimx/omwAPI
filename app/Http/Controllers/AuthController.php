@@ -40,12 +40,12 @@ class AuthController extends Controller
         'password' => 'required|string',
       ]);
       
-      User::create([
+      $user = User::create([
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
       ]);
-
+        return $response->$user;
       // login process again
       $http = new \GuzzleHttp\Client();
 
