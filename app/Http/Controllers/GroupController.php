@@ -14,6 +14,7 @@ class GroupController extends Controller
      */
     public function index()
     {
+     // return "hola mundo";
       $groups = Group::get();
       return response()->json(compact('groups'));
     }

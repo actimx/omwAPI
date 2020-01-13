@@ -20,6 +20,7 @@ class AuthController extends Controller
             'client_secret' => 'RT9Mim3zlvZ4T1MWimUVq3nNOu2Zp6aR1baGOkVJ',
             'username' => $request->username,
             'password' => $request->password,
+            
         ]
       ]);
       return $response->getBody();
@@ -37,8 +38,10 @@ class AuthController extends Controller
   public function register(Request $request){
       $validator = Validator::make($request->all(), [
         'name' => 'required|string|max:255',
+        'lastname' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string',
+        'c_password' => 'required|same:password',
     ]);
     if($validator->fails()) {
         return response()->json([
@@ -49,9 +52,12 @@ class AuthController extends Controller
       
       $user = User::create([
         'name' => $request->name,
+        'lastname' => $request->lastname,
         'email' => $request->email,
         'password' => Hash::make($request->password),
       ]);
+
+
       // login process again
       $http = new \GuzzleHttp\Client();
 
@@ -65,6 +71,7 @@ class AuthController extends Controller
             'password' => $request->password,
         ]
       ]);
+
       return $response->getBody();
     } catch(\GuzzleHttp\Exception\BadResponseException $e){
       if($e->getCode() === 400){
@@ -78,6 +85,7 @@ class AuthController extends Controller
   }
 
   public function getUser(){
-    return Auth()->user();
+    return "Hola marco";
+    //return Auth()->user();
   }
 }

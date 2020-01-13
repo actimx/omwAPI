@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->group(function () {
   Route::get('/user', 'AuthController@getUser');
 
-       Route::resources([
+Route::resources([
   'events' => 'EventController',
   'event_information' => 'EventInformationController',
   'groups' => 'GroupController',
@@ -31,13 +31,15 @@ Route::middleware('auth:api')->group(function () {
 
 });
 
-// Route::resources([
-//   'events' => 'EventController',
-//   'event_information' => 'EventInformationController',
-//   'groups' => 'GroupController',
-//   'group_user' => 'GroupUserController',
-//   'invitations' => 'InvitationController',
-//   'user_information' => 'UserInformationController',
-// ]);
+ /*Route::resources([
+   'events' => 'EventController',
+   'event_information' => 'EventInformationController',
+   'groups' => 'GroupController',
+   'group_user' => 'GroupUserController',
+   'invitations' => 'InvitationController',
+   'user_information' => 'UserInformationController',
+ ]);*/
 Route::post('/auth/register', 'AuthController@register');
 Route::post('/auth/login', 'AuthController@login');
+//Route::get('/auth/groups', 'GroupController@Index');
+//Route::get('/auth/user', 'AuthController@getUser');
