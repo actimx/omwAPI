@@ -16,10 +16,8 @@ class AuthController extends Controller
       $response = $http->post('https://onmyway69.herokuapp.com/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
-            'client_id' => 2,
-            'client_secret' => 'RT9Mim3zlvZ4T1MWimUVq3nNOu2Zp6aR1baGOkVJ',
-            //'client_id' => 11,
-            //'client_secret' => 'KPkc18zX3lu3sWrotRcHCFISNcB7FmXWkAE7Tz6X',
+            'client_id' => 61,
+            'client_secret' => 'CEzakOEUKew3nlRnhOI20I7ntNdLIjHips0oZgei',
             'username' => $request->username,
             'password' => $request->password,
             
@@ -40,7 +38,6 @@ class AuthController extends Controller
   public function register(Request $request){
       $validator = Validator::make($request->all(), [
         'name' => 'required|string|max:255',
-        'lastname' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string',
         'c_password' => 'required|same:password',
@@ -54,7 +51,6 @@ class AuthController extends Controller
       
       $user = User::create([
         'name' => $request->name,
-        'lastname' => $request->lastname,
         'email' => $request->email,
         'password' => Hash::make($request->password),
       ]);
@@ -67,8 +63,8 @@ class AuthController extends Controller
       $response = $http->post('https://onmyway69.herokuapp.com/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
-            'client_id' => 2,
-            'client_secret' => 'RT9Mim3zlvZ4T1MWimUVq3nNOu2Zp6aR1baGOkVJ',
+            'client_id' => 61,
+            'client_secret' => 'CEzakOEUKew3nlRnhOI20I7ntNdLIjHips0oZgei',
             'username' => $request->username,
             'password' => $request->password,
         ]
