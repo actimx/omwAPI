@@ -83,7 +83,6 @@ class AuthController extends Controller
   }
 
   public function getUser(){
-    return "Hola marco";
-    //return Auth()->user();
+    return Auth()->user();
   }
 }
