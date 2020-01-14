@@ -16,10 +16,10 @@ class AuthController extends Controller
       $response = $http->post('https://onmyway69.herokuapp.com/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
-            //'client_id' => 2,
-            //'client_secret' => 'RT9Mim3zlvZ4T1MWimUVq3nNOu2Zp6aR1baGOkVJ',
-            'client_id' => 11,
-            'client_secret' => 'KPkc18zX3lu3sWrotRcHCFISNcB7FmXWkAE7Tz6X',
+            'client_id' => 2,
+            'client_secret' => 'RT9Mim3zlvZ4T1MWimUVq3nNOu2Zp6aR1baGOkVJ',
+            //'client_id' => 11,
+            //'client_secret' => 'KPkc18zX3lu3sWrotRcHCFISNcB7FmXWkAE7Tz6X',
             'username' => $request->username,
             'password' => $request->password,
             
