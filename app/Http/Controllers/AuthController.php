@@ -65,7 +65,7 @@ class AuthController extends Controller
             'grant_type' => 'password',
             'client_id' => 61,
             'client_secret' => 'CEzakOEUKew3nlRnhOI20I7ntNdLIjHips0oZgei',
-            'username' => $request->username,
+            'username' => $request->email,
             'password' => $request->password,
         ]
       ]);
