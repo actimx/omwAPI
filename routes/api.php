@@ -24,6 +24,7 @@ Route::resources([
   'invitations' => 'InvitationController',
   'user_information' => 'UserInformationController',
 ]);
+  // Route::get('/user_information/{email}', 'UserInformationController@showWithEmail');
 //   Route::get('/users-information/{id}', 'UserController@getUserInformation');
 //   Route::post('/users-information', 'UserController@createUserInformation');
 //   Route::put('/users-information/{id}', 'UserController@updateUserInformation');

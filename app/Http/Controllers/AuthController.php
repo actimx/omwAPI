@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Hash;
 use Validator;
+use App\UserInformation;
+
 
 class AuthController extends Controller
 {
@@ -53,6 +55,18 @@ class AuthController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
+      ]);
+
+      $user_information_id = User::where('email', $request->email)->first();
+
+      $user_information = UserInformation::create([
+      'user_id' => $user_information_id->id,
+      'first_name' => $request->name,
+      'last_name' => $request->lastname,
+      'age' => '',
+      'sex' => '',
+      'phone' => '',
+      'address' => '',
       ]);
 
 

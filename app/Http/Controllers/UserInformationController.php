@@ -60,8 +60,9 @@ class UserInformationController extends Controller
      */
     public function show($id)
     {
-        //
+        //Devolver datos completos del usuario
     }
+
 
     /**
      * Show the form for editing the specified resource.
