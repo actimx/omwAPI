@@ -59,7 +59,7 @@ class GroupController extends Controller
     {
         //Bring back the group information for id
 
-        $group_information = Group::Where('user_id',$id);
+        $group_information = Group::Where('user_id', Group::findOrFail($id));
         return response()->json(compact('group_information'));
 
     }
