@@ -55,11 +55,11 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         //Bring back the group information for id
 
-        $group_information = Group::Where('user_id',$id);
+        $group_information = Group::Where('user_id',$request->user_id);
         return response()->json(compact('group_information'));
 
     }
