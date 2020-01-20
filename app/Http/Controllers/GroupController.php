@@ -62,7 +62,7 @@ class GroupController extends Controller
         //$group_information = Group::Where('user_id',$id);
        // return response()->json(compact('group_information'));
        var_dump($id);
-       $group_information = DB::table('groups')->where('user_id', $id)->get();
+       $group_information = Group::table('groups')->where('user_id', $id)->get();
        return response()->json($group_information);
 
     }
