@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Group;
+use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
@@ -59,7 +60,8 @@ class GroupController extends Controller
     {
         //Bring back the group information for id
 
-        $group_information = Group::Where('user_id', Group::findOrFail($id));
+        //$group_information = Group::Where('user_id', $id);
+        $group_information = DB::table('groups')->where('user_id', $id);
         return response()->json(compact('group_information'));
 
     }
