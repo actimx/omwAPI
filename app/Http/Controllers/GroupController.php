@@ -57,7 +57,11 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        //
+        //Bring back the group information for id
+
+        $group_information = Group::Where('user_id',$id);
+        return response()->json(compact('group_information'));
+
     }
 
     /**
