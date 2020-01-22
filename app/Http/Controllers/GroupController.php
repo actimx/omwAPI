@@ -38,12 +38,23 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-      $group = new Group();
+     /* $group = new Group();
       $group->user_id = $request->user_id;
       $group->name = $request->name;
       $group->photo = $request->photo;
 
-      $group->save();
+      $group->save();*/
+
+      //IMAGE
+      $entrada=$request->all();
+
+      if($archivo=$request->photo('photo')){
+        $nombre=$archivo->getClientOriginalName();
+        $archivo->move('images', $nombre);
+        $entrada['photo']=$nombre;
+      }
+
+      Group::create($entrada);
 
       return response()->json([
         'result' => 'success'
@@ -85,11 +96,25 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $group = Group::findOrFail($id);
+     /* $group = Group::findOrFail($id);
       $group->user_id = $request->user_id;
       $group->name = $request->name;
       $group->photo = $request->photo;
-      $group->save();
+      $group->save();*/
+
+      //IMAGE
+      $entrada = Group::findOrFail($id);
+      $entrada=$request->all()->save();
+
+      if($archivo=$request->photo('photo')){
+        $path = Storage::disk('public')->put('images', $request->photo('photo'));
+        $entrada->fill(['photo'=> asset($path)])->save();
+
+       /* $nombre=$archivo->getClientOriginalName();
+        $archivo->move('images', $nombre);
+        $entrada['photo']=$nombre;*/
+      }
+      
 
       return response()->json([
         'result' => 'success'
