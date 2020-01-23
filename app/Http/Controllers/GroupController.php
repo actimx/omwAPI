@@ -46,7 +46,7 @@ class GroupController extends Controller
       $group->save();*/
 
       //IMAGE
-      $entrada=$request->all();
+     /* $entrada=$request->all();
 
       if($archivo=$request->photo('photo')){
         $nombre=$archivo->getClientOriginalName();
@@ -54,7 +54,18 @@ class GroupController extends Controller
         $entrada['photo']=$nombre;
       }
 
-      Group::create($entrada);
+      Group::create($entrada);*/
+      if($request->hasFile('photo')){
+        $file = $request->file('photo');
+        $name_file = time().$file->getClientOriginalName();
+        $file->move(public_path().'/images/', $name_file);
+      }
+      $group = new Group();
+      $group->user_id = $request->user_id;
+      $group->name = $request->name;
+      $group->photo = $name_file;
+
+      $group->save();
 
       return response()->json([
         'result' => 'success'
@@ -103,18 +114,30 @@ class GroupController extends Controller
       $group->save();*/
 
       //IMAGE
-      $entrada = Group::findOrFail($id);
+      /*$entrada = Group::findOrFail($id);
       $entrada=$request->all()->save();
 
       if($archivo=$request->photo('photo')){
         $path = Storage::disk('public')->put('images', $request->photo('photo'));
-        $entrada->fill(['photo'=> asset($path)])->save();
+        $entrada->fill(['photo'=> asset($path)])->save();*/
 
        /* $nombre=$archivo->getClientOriginalName();
         $archivo->move('images', $nombre);
-        $entrada['photo']=$nombre;*/
+        $entrada['photo']=$nombre;
       }
-      
+      */
+      if($request->hasFile('photo')){
+        $file = $request->file('photo');
+        $name_file = time().$file->getClientOriginalName();
+        $file->move(public_path().'/images/', $name_file);
+      }
+
+      $group = Group::findOrFail($id);
+      $group->user_id = $request->user_id;
+      $group->name = $request->name;
+      $group->photo = $name_file;
+      $group->save();
+
 
       return response()->json([
         'result' => 'success'
