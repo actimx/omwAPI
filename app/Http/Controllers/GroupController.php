@@ -15,9 +15,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-     // return "hola mundo";
-      $groups = Group::get();
-      return response()->json(compact('groups'));
+        // return "hola mundo";
+        $groups = Group::get();
+        return response()->json(compact('groups'));
     }
 
     /**
@@ -27,7 +27,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -38,38 +38,38 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-     /* $group = new Group();
-      $group->user_id = $request->user_id;
-      $group->name = $request->name;
-      $group->photo = $request->photo;
+        /* $group = new Group();
+        $group->user_id = $request->user_id;
+        $group->name = $request->name;
+        $group->photo = $request->photo;
 
-      $group->save();*/
+        $group->save();*/
 
-      //IMAGE
-     /* $entrada=$request->all();
+        //IMAGE
+        /* $entrada=$request->all();
 
-      if($archivo=$request->photo('photo')){
-        $nombre=$archivo->getClientOriginalName();
-        $archivo->move('images', $nombre);
-        $entrada['photo']=$nombre;
-      }
+        if($archivo=$request->photo('photo')){
+            $nombre=$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $entrada['photo']=$nombre;
+        }
 
-      Group::create($entrada);*/
-      if($request->hasFile('photo')){
-        $file = $request->file('photo');
-        $name_file = time().$file->getClientOriginalName();
-        $file->move(public_path().'/images/', $name_file);
-      }
-      $group = new Group();
-      $group->user_id = $request->user_id;
-      $group->name = $request->name;
-      $group->photo = $name_file;
+        Group::create($entrada);*/
+        // if($request->has('photo')){
+        //     $file = $request->file('photo');
+        //     $name_file = time().$file->getClientOriginalName();
+        //     $file->move(public_path().'/images/', $name_file);
+        // }
+        $group = new Group();
+        $group->user_id = $request->user_id;
+        $group->name = $request->name;
+        $group->photo = $request->photo;
 
-      $group->save();
+        $group->save();
 
-      return response()->json([
-        'result' => 'success'
-      ]);
+        return response()->json([
+            'result' => 'success'
+        ]);
     }
 
     /**
@@ -81,10 +81,9 @@ class GroupController extends Controller
     public function show($id)
     {
         //Bring back the group information for id
-      
-      $group_information = Group::Where('user_id',$id)->get();
-      return response()->json(compact('group_information'));
 
+        $group_information = Group::Where('user_id',$id)->get();
+        return response()->json(compact('group_information'));
     }
 
     /**
@@ -152,11 +151,11 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-      $group = Group::findOrFail($id);
-      $group->delete();
+        $group = Group::findOrFail($id);
+        $group->delete();
 
-      return response()->json([
-        'result' => 'success'
-      ]);
+        return response()->json([
+            'result' => 'success'
+        ]);
     }
 }

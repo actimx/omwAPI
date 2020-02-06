@@ -21,7 +21,7 @@ Class JwtAuth{
 				))->first();
 
 		$signup = false;
-		
+
 		if(is_object($user)){
 			$signup = true;
 		}
@@ -34,7 +34,7 @@ Class JwtAuth{
 				'name' => $user->name,
 				'surname' => $user->surname,
 				'iat' => time(),
-				'exp' => time() + (7 * 24 * 60 * 60) 
+				'exp' => time() + (7 * 24 * 60 * 60)
 			);
 
 			$jwt = JWT::encode($token, $this->key, array('HS256'));
